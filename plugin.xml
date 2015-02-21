@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+		id="com.nearbytes.sdk.phonegap"
+		version="1.0" >
+		<!-- xmlns:android="http://schemas.android.com/apk/res/android" -->
+    <name>NearBytes</name>
+    <description>Cordova NearBytes Plugin</description>
+    <license>see in nearbytes.com</license>
+    <keywords>nearbytes,sdk,som,data</keywords>
+
+    <js-module src="www/NearBytesPhonegap.js" name="NearBytes">
+        <clobbers target="window.NearBytes" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="NearBytes" >
+                <param name="android-package" value="com.nearbytes.sdk.phonegap.NearBytesPhonegap"/>
+            </feature>
+        </config-file>
+
+		<source-file src="src/android/NearBytesPhonegap.java" target-dir="src/com/nearbytes/sdk/phonegap" />
+		<source-file src="libs/android/NearBytes.jar" target-dir="libs" />
+		<source-file src="libs/android/NearBytes-doc.jar" target-dir="libs" />
+		<source-file src="libs/android/NearBytes.jar.properties" target-dir="libs" />
+		<source-file src="libs/android/x86/libNearBytes.so" target-dir="libs/x86" />
+		<source-file src="libs/android/armeabi/libNearBytes.so" target-dir="libs/armeabi" />
+		<source-file src="libs/android/armeabi-v7a/libNearBytes.so" target-dir="libs/armeabi-v7a" />
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+			<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+			<uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+			<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+		</config-file>
+	
+    </platform>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="NearBytes">
+                <param name="ios-package" value="NearBytesPhonegap" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/NearBytesPhonegap.h" />
+        <source-file src="src/ios/NearBytesPhonegap.m" />
+        <source-file src="libs/ios/NearBytes.framework/Versions/A/NearBytes" framework="true" />
+        <header-file src="libs/ios/NearBytes.framework/Versions/A/Headers/NearBytes.h" />
+        <header-file src="libs/ios/NearBytes.framework/Versions/A/Headers/NearBytesDelegate.h" />
+        <framework src="AVFoundation.framework" />
+        <framework src="MediaPlayer.framework" />
+        <framework src="AudioToolbox.framework" />
+        <framework src="libc++.dylib" />
+        <framework src="UIKit.framework" />
+        <framework src="Foundation.framework" />
+	</platform>
+
+</plugin>
